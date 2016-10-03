@@ -35,19 +35,6 @@ export class GrantConsentComponent implements OnInit {
   }
 
   /**
-   * Invokes the method on the server to grant data access.
-   * Reloads the list of possible users to grant data access to on success.
-   *
-   * @param receiver the user to allow access to the data
-   */
-  public grantDataAccess(receiver: string): void {
-    this.grantConsentService.grantDataAccess(receiver).then(message => {
-      this.message = message;
-      this.ngOnInit();//reload
-    });
-  }
-
-  /**
    * Retrieves all users that can be granted access to the data and that are not yet granted already.
    * Initially, when nobody is allowed access yet, these are all users in the system.
    */
@@ -69,6 +56,19 @@ export class GrantConsentComponent implements OnInit {
    */
   public getSentUsers(): void {
     this.grantConsentService.getSentUsers().then(sentUsers => this.sentUsers = sentUsers);
+  }
+
+  /**
+   * Invokes the method on the server to grant data access.
+   * Reloads the list of possible users to grant data access to on success.
+   *
+   * @param receiver the user to allow access to the data
+   */
+  public grantDataAccess(receiver: string): void {
+    this.grantConsentService.grantDataAccess(receiver).then(message => {
+      this.message = message;
+      this.ngOnInit();//reload
+    });
   }
 
   /**

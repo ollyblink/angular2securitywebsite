@@ -10,7 +10,7 @@ import {Data} from "../../models/data";
 
 
 describe('DataComponent', ()=> {
-  let fixture: ComponentFixture<DataComponent>
+  let fixture: ComponentFixture<DataComponent>;
   let comp: DataComponent;
   let dataService: DataService;
   let spy: any;
@@ -55,7 +55,6 @@ describe('DataComponent', ()=> {
   });
 
   it('#onInit: should still not show data after component initialized', ()=> {
-
     spy = spyOn(dataService, 'getOwnData').and.returnValue(Promise.resolve(testData));
     //Async call --> should not return yet.
     fixture.detectChanges();
