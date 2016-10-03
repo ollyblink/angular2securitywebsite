@@ -1,0 +1,34 @@
+<div class="container">
+
+  <div id="choose-user" *ngIf="consentedUsers.length > 0">
+    <p>Choose a user to view their data</p>
+    <select id='select-user' class="form-control" (change)="onChange($event.target.value)">
+      <option></option>
+      <option *ngFor="let user of consentedUsers; let i = index" id="user-{{i}}">{{user}}</option>
+    </select>
+  </div>
+  <div id="no-user-found" *ngIf="!consentedUsers || consentedUsers.length === 0">
+    <p>No users allowed you access to their data!</p>
+  </div>
+  <div id="user-data" *ngIf="selectedUser">
+    <h2>Data of user {{user}}</h2>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Title</th>
+        <th>Added on</th>
+        <th>FVC</th>
+        <th>FEV 1</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of spirometryData">
+        <td>{{data.title}}</td>
+        <td>{{data.dateTime}}</td>
+        <td>{{data.fvc}}</td>
+        <td>{{data.fev1}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

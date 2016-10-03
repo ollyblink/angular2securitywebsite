@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Register</h1>
+  <p *ngIf="message"><img src='../../imgs/wait16.gif' /> <span class="message">{{message}}</span></p>
+  <form (ngSubmit)="register()">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" required [(ngModel)]="userModel.username" name="username"
+             (keyup)="0">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input #password type="password" class="form-control" id="password" [(ngModel)]="userModel.password"
+             name="password" (keyup)="0">
+    </div>
+    <button type="submit" id="submit-button" class="btn btn-default">Register</button>
+  </form>
+</div>

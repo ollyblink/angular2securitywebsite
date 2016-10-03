@@ -1,0 +1,14 @@
+<div class="container">
+  <div>
+    <h1>{{storage.getItem('user')}}</h1>
+  </div>
+  <nav>
+    <a routerLink="/register" *ngIf="!storage.getItem('user')">Register</a>
+    <a routerLink="/login" *ngIf="!storage.getItem('user')">Login</a>
+    <a routerLink="/data" *ngIf="storage.getItem('user')">My Data</a>
+    <a routerLink="/consentdata" *ngIf="storage.getItem('user')">Data of other users</a>
+    <a routerLink="/logout" *ngIf="storage.getItem('user')">Logout</a>
+  </nav>
+  <hr />
+</div>
+<router-outlet></router-outlet>
