@@ -68,6 +68,8 @@ export class DataComponent implements OnInit {
     if (localStorage.getItem('user')) {
       this.dataService.addDataItem(this.dataItem).then(message => {
         this.message = message;
+        this.showAddItem();
+        this.dataItem = new Data("","", null, null);
         //reload
         this.getOwnData();
       });

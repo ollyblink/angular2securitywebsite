@@ -85,7 +85,7 @@ describe('LoginComponent', ()=> {
 
     //Before the call returns, Logging in ... should be displayed
     el = fixture.debugElement.query(By.css('.message')).nativeElement;
-    expect(el.textContent).toBe(LoginComponent.WAITING_TEXT, "waiting message");
+    expect(el.textContent).toContain(LoginComponent.WAITING_TEXT, "waiting message");
     expect(loginService.login).toHaveBeenCalledTimes(1);
 
     tick(); //Await the callback
@@ -95,7 +95,7 @@ describe('LoginComponent', ()=> {
     //On successful login, there should be the message that the user logged
     //in successfully, before the router navigates to the user's data page.
     el = fixture.debugElement.query(By.css('.message')).nativeElement;
-    expect(el.textContent).toBe("user o1 logged in", "waiting message");
+    expect(el.textContent).toContain("user o1 logged in", "waiting message");
     //Assure login redirects to data
     expect(routerSpy.calls.first().args[0][0]).toBe('/data');
     expect(router.navigate).toHaveBeenCalledTimes(1);

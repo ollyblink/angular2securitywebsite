@@ -12,13 +12,15 @@ import {DataComponent} from "./data/owndata/data.component";
 import {LogoutComponent} from "./logout/logout.component";
 import {ConsentDataComponent} from "./data/consentdata/consentdata.component";
 import {GrantConsentComponent} from "./data/grantconsent/grantconsent.component";
+import {DropdownModule} from "ng2-dropdown";
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    DropdownModule
   ],
   declarations: [
     AppComponent,

@@ -26,6 +26,7 @@ const appRoutes: Routes = [
     path: 'data',
     component: DataComponent
   },
+
   {
     path: 'consentdata',
     component: ConsentDataComponent

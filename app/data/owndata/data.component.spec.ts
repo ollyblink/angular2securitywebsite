@@ -117,7 +117,7 @@ describe('DataComponent', ()=> {
     fixture.debugElement.query(By.css('#showAddItem')).nativeElement.click(); // removes showAddItem and adds hideAddItem
     fixture.detectChanges();
     expect(fixture.debugElement.query(By.css('#showAddItem'))).toBe(null, 'not shown anymore');
-    expect(fixture.debugElement.query(By.css('#hideAddItem')).nativeElement.textContent).toBe("Hide add new data item", 'shown')
+    expect(fixture.debugElement.query(By.css('#hideAddItem')).nativeElement.textContent).toBe("Hide", 'shown')
     fixture.debugElement.query(By.css('#hideAddItem')).nativeElement.click(); // removes hideAddItem and adds showAddItem
     fixture.detectChanges();
     expect(fixture.debugElement.query(By.css('#showAddItem')).nativeElement.textContent).toBe('Add new data item', 'shown');

@@ -17,6 +17,9 @@ export class ConsentDataComponent implements OnInit {
   private spirometryData: Data[] = [];
   private consentedUsers: string[] = [];
   private selectedUser: string;
+  private message: string;
+  private msgBgColor: string;
+  private msgFontColor: string;
 
   public constructor(private consentDataService: ConsentDataService) {
 
@@ -26,12 +29,28 @@ export class ConsentDataComponent implements OnInit {
     this.consentDataService.getOtherData(username).then(json => {
       this.user = json.user;
       this.spirometryData = json.spirometryData;
+      this.message = "";
+      this.msgBgColor = "white";
+      this.msgFontColor = "black";
+    }).catch(error => {
+      this.user = "";
+      this.spirometryData = [];
+      this.selectedUser ="";
+      this.message = "Could not find a valid consent for the user specified!";
+      this.msgBgColor = "red";
+      this.msgFontColor = "white";
     });
   }
 
   public onChange(selectedUser: string) {
-    this.selectedUser = selectedUser;
-    this.getOtherData(this.selectedUser);
+    this.selectedUser = selectedUser.trim();
+    if (selectedUser.length > 0) {
+      this.getOtherData(this.selectedUser);
+    } else {
+      //Change was initiated but select was empty --> remove existing data
+      this.user = "";
+      this.spirometryData = [];
+    }
   }
 
   public getUsersToGrantConsentTo(): void {

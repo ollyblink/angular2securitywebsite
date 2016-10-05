@@ -1,14 +1,28 @@
-<div class="container">
-  <div>
-    <h1>{{storage.getItem('user')}}</h1>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav" *ngIf="!storage.getItem('user')">
+        <li><a routerLink="/login">Login</a></li>
+        <li><a routerLink="/register">Register</a></li>
+      </ul>
+      <ul class="nav navbar-nav" *ngIf="storage.getItem('user')">
+        <li dropdown [dropdownToggle]="true">
+          <a style="cursor:pointer;" data-target="#navbar" target="_self" dropdown-open>My Data</a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/data">Show data</a></li>
+            <li><a routerLink="/grantconsent">Allow access to data</a></li>
+          </ul>
+        </li>
+        <li><a routerLink="/consentdata">Data of other users</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" *ngIf="storage.getItem('user')">
+        <li><span class="navbar-brand" href="#">{{storage.getItem('user')}}</span></li>
+        <li><a routerLink="/logout">Logout</a></li>
+      </ul>
+    </div>
   </div>
-  <nav>
-    <a routerLink="/register" *ngIf="!storage.getItem('user')">Register</a>
-    <a routerLink="/login" *ngIf="!storage.getItem('user')">Login</a>
-    <a routerLink="/data" *ngIf="storage.getItem('user')">My Data</a>
-    <a routerLink="/consentdata" *ngIf="storage.getItem('user')">Data of other users</a>
-    <a routerLink="/logout" *ngIf="storage.getItem('user')">Logout</a>
-  </nav>
-  <hr />
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>
